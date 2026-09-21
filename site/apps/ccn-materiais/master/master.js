@@ -1,6 +1,6 @@
 const $=(selector,root=document)=>root.querySelector(selector),$$=(selector,root=document)=>[...root.querySelectorAll(selector)];
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const api=async(path,options={})=>{const response=await fetch(path,{credentials:'same-origin',headers:options.body instanceof FormData?{}:{'content-type':'application/json',...(options.headers||{})},...options});const body=await response.json().catch(()=>({}));if(response.status===401){location.href='/';throw new Error('Sessão expirada.');}if(!response.ok)throw new Error(body.error||'Não foi possível concluir.');return body;};
+const api=async(path,options={})=>{const response=await fetch(path,{credentials:'same-origin',headers:options.body instanceof FormData?{}:{'content-type':'application/json',...(options.headers||{})},...options});const body=await response.json().catch(()=>({}));if(response.status===401){location.href='../?acesso=master';throw new Error('Sessão expirada.');}if(!response.ok)throw new Error(body.error||'Não foi possível concluir.');return body;};
 const statusLabel={filling:'Em preenchimento',submitted:'Enviada',rectification_requested:'Retificação solicitada',correction_allowed:'Liberada para retificação',resubmitted:'Reenviada',closed:'Encerrada',draft:'Rascunho',published:'Publicada',processed:'Processada',validated:'Validada',replaced:'Substituída'};
 const months=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const actionLabel={login:'Login',sector_created:'Setor cadastrado',sector_updated:'Setor atualizado',reset_link_sent:'Link de redefinição enviado',spreadsheet_processed:'Planilha processada',spreadsheet_validated:'Planilha validada',competency_published:'Competência publicada',rectification_allowed:'Retificação liberada',request_closed:'Solicitação encerrada',settings_updated:'Configuração atualizada',pdf_downloaded:'PDF acessado'};
@@ -38,4 +38,4 @@ async function closeRequest(id){if(!confirm('Encerrar esta solicitação?'))retu
 $('#settings-form').addEventListener('submit',async event=>{event.preventDefault();const message=$('#settings-message');message.textContent='Salvando…';try{await api('/api/master/settings',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(event.currentTarget)))});message.textContent='E-mail atualizado.';await load();showTab('historico');}catch(error){message.textContent=error.message;}});
 
 void import('../brand-signature.js');
-load().catch(()=>location.href='../');
+load().catch(()=>location.href='../?acesso=master');

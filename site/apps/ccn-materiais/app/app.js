@@ -1,6 +1,6 @@
 const $=(selector,root=document)=>root.querySelector(selector),$$=(selector,root=document)=>[...root.querySelectorAll(selector)];
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const api=async(path,options={})=>{const response=await fetch(path,{credentials:'same-origin',headers:{'content-type':'application/json',...(options.headers||{})},...options});const body=await response.json().catch(()=>({}));if(response.status===401){location.href='/';throw new Error('Sessão expirada.');}if(!response.ok)throw new Error(body.error||'Não foi possível concluir.');return body;};
+const api=async(path,options={})=>{const response=await fetch(path,{credentials:'same-origin',headers:{'content-type':'application/json',...(options.headers||{})},...options});const body=await response.json().catch(()=>({}));if(response.status===401){location.href='../';throw new Error('Sessão expirada.');}if(!response.ok)throw new Error(body.error||'Não foi possível concluir.');return body;};
 const statusLabel={not_started:'Não iniciada',filling:'Em preenchimento',submitted:'Enviada',rectification_requested:'Retificação solicitada',correction_allowed:'Liberada para retificação',resubmitted:'Reenviada',closed:'Encerrada'};
 const months=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 let dashboard,currentRequest,saveTimer;

@@ -1,5 +1,6 @@
 (function () {
   const key = 'gabriel.ccn-auditorio.demo.v1';
+  const sessionKey = 'gabriel.ccn-auditorio.admin-session';
   const pad = (value) => String(value).padStart(2, '0');
   const iso = (offset) => {
     const date = new Date();
@@ -58,7 +59,15 @@
       state.reservations.push({ id, protocol, event_name: inputBody.eventName, event_date: inputBody.eventDate, start_time: inputBody.startTime, end_time: inputBody.endTime, sector_id: sector.id, sector_name: sector.name, sector_icon: sector.icon, status: 'requested', source: 'public', requester_name: inputBody.requesterName, requester_type: inputBody.requesterType, phone: inputBody.phone, email: inputBody.email, institutional_email: inputBody.institutionalEmail || '', siape: inputBody.siape || '', justification: inputBody.justification, admin_note: '' });
       state.logs.unshift({ action: 'reservation_requested', actor: inputBody.requesterName, entity_type: 'reservation', entity_id: id, created_at: new Date().toISOString() }); save(state); return json({ protocol });
     }
-    if (path === '/api/admin/session' || path === '/api/admin/login' || path === '/api/admin/logout') return json({ ok: true });
+    if (path === '/api/admin/session') return sessionStorage.getItem(sessionKey) === 'admin' ? json({ ok: true }) : json({ error: 'Acesso administrativo necessário.' }, 401);
+    if (path === '/api/admin/login' && method === 'POST') {
+      const inputBody = body(options);
+      if (String(inputBody.username || '').toLowerCase() !== 'admin' || inputBody.password !== 'demo123') return json({ error: 'Use admin e a senha demo123.' }, 401);
+      sessionStorage.setItem(sessionKey, 'admin');
+      return json({ ok: true });
+    }
+    if (path === '/api/admin/logout' && method === 'POST') { sessionStorage.removeItem(sessionKey); return json({ ok: true }); }
+    if (path.startsWith('/api/admin/') && sessionStorage.getItem(sessionKey) !== 'admin') return json({ error: 'Acesso administrativo necessário.' }, 401);
     if (path === '/api/admin/data') return json(state);
     if (path === '/api/admin/reservations' && method === 'POST') {
       const inputBody = body(options); const sector = state.sectors.find((item) => item.id === Number(inputBody.sectorId)) || state.sectors[0]; const id = Date.now(); const protocol = `AS-ADM-${String(id).slice(-6)}`;

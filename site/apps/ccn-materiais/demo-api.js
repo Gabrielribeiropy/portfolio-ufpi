@@ -1,5 +1,6 @@
 (function () {
   const key = 'gabriel.ccn-materiais.demo.v1';
+  const sessionKey = 'gabriel.ccn-materiais.demo.role';
   const now = new Date();
   const initial = {
     sector: { id: 1, name: 'Departamento de Matemática', responsible_name: 'Mariana Costa', siape: '0000000', institutional_email: 'mariana@ufpi.edu.br', phone: '(86) 99999-0000', request_contact: 'Mariana Costa' },
@@ -36,9 +37,15 @@
     const url = new URL(typeof input === 'string' ? input : input.url, location.href);
     if (!url.pathname.startsWith('/api/')) return originalFetch(input, options);
     const state = load(); const path = url.pathname; const method = (options.method || 'GET').toUpperCase();
-    if (path === '/api/auth/session') return json({ error: 'Sessão demonstrativa não iniciada.' }, 401);
-    if (path === '/api/auth/login') { const inputBody = parseBody(options); return json({ role: String(inputBody.login || '').toLowerCase().includes('master') ? 'master' : 'user' }); }
-    if (path === '/api/auth/logout') return json({ ok: true });
+    if (path === '/api/auth/session') { const role = sessionStorage.getItem(sessionKey); return role ? json({ role }) : json({ error: 'Sessão demonstrativa não iniciada.' }, 401); }
+    if (path === '/api/auth/login' && method === 'POST') {
+      const inputBody = parseBody(options); const login = String(inputBody.login || '').toLowerCase(); const role = login === 'master' ? 'master' : login === 'setor' ? 'user' : '';
+      if (!role || inputBody.password !== 'demo123') return json({ error: 'Use setor ou master com a senha demo123.' }, 401);
+      sessionStorage.setItem(sessionKey, role); return json({ role });
+    }
+    if (path === '/api/auth/logout') { sessionStorage.removeItem(sessionKey); return json({ ok: true }); }
+    if (path.startsWith('/api/master/') && sessionStorage.getItem(sessionKey) !== 'master') return json({ error: 'Acesso Master necessário.' }, 401);
+    if (path.startsWith('/api/user/') && sessionStorage.getItem(sessionKey) !== 'user') return json({ error: 'Acesso do setor necessário.' }, 401);
     if (path === '/api/user/dashboard') return json({ sector: state.sector, competencies: state.competencies });
     if (path === '/api/user/profile' && method === 'PATCH') { const inputBody = parseBody(options); Object.assign(state.sector, { responsible_name: inputBody.responsibleName, siape: inputBody.siape, institutional_email: inputBody.institutionalEmail, phone: inputBody.phone, request_contact: inputBody.requestContact }); save(state); return json({ ok: true }); }
     if (path === '/api/user/requests/start') { const inputBody = parseBody(options); const competency = state.competencies.find((item) => item.id === Number(inputBody.competencyId)) || state.competencies[0]; state.request.competency_id = competency.id; state.request.type_name = competency.type_name; state.request.month = competency.month; state.request.year = competency.year; save(state); return json({ requestId: state.request.id }); }
