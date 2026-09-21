@@ -13,13 +13,22 @@ Vitrine pública dos projetos demonstrativos criados por Gabriel Ribeiro para o 
 - `/projetos/ccn-auditorio/`
 - `/projetos/ccn-web/`
 
+## Demonstrações funcionais
+
+- `https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-mobile/`
+- `https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-materiais/`
+- `https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-auditorio/`
+- `https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-web/`
+
+Em Materiais, use `setor` para a experiência do solicitante ou `master` para o painel de gestão; qualquer senha funciona no modo demonstrativo. Auditório, Materiais e Portal salvam alterações somente no navegador do visitante.
+
 Repositório planejado: `https://github.com/Gabrielribeiropy/portfolio-ufpi`.
 
 O site é publicado automaticamente pelo workflow `.github/workflows/pages.yml` a cada push na branch `main`.
 
 ## Limite do GitHub Pages
 
-GitHub Pages hospeda apenas arquivos estáticos. Por isso, Materiais e Auditório são apresentados como demonstrações visuais. Banco de dados, login, e-mail, uploads, APIs e rotinas de servidor exigem uma hospedagem Node.js separada.
+GitHub Pages hospeda apenas arquivos estáticos. Por isso, Materiais e Auditório utilizam um modo demonstrativo interativo com dados locais. Banco de dados compartilhado, login real, e-mail, uploads, APIs e rotinas de servidor exigem uma hospedagem Node.js separada.
 
 ## Marca e responsabilidade
 

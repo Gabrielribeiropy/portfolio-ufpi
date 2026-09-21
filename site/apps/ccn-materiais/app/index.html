@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#073d73"><title>Meu setor · Solicitação de Materiais</title><link rel="stylesheet" href="../styles.css"></head><body>
+<header class="topbar"><a class="brand" href="./"><span class="brand-mark">CCN</span><span><b id="sector-title">Meu setor</b><small>Solicitação de Materiais · UFPI</small></span></a><button class="ghost" id="logout">Sair</button></header>
+<main class="shell">
+  <div id="main-area">
+    <section class="page-head"><span class="eyebrow">AMBIENTE DO SETOR</span><h1>Solicitações de materiais</h1><p>Preencha as quantidades, revise e envie para a Direção do Centro.</p></section>
+    <nav class="nav-tabs"><button data-tab="inicio" class="active">Competências</button><button data-tab="historico">Histórico</button><button data-tab="perfil">Meus dados</button></nav>
+    <section id="tab-inicio" class="tab active"><div class="panel"><div class="section-head"><div><span class="eyebrow">COMPETÊNCIAS MAIS RECENTES</span><h2>O que deseja solicitar?</h2></div></div><div id="current-types" class="grid"></div></div></section>
+    <section id="tab-historico" class="tab"><div class="panel"><span class="eyebrow">ANO · MÊS · TIPO</span><h2>Histórico do setor</h2><div id="user-history"></div></div></section>
+    <section id="tab-perfil" class="tab"><div class="panel"><span class="eyebrow">DADOS REUTILIZADOS</span><h2>Responsável pela solicitação</h2><p>Estes dados serão usados nas próximas competências e nos PDFs.</p><form id="profile-form" class="profile-grid"><label>Setor<input name="sectorName" disabled></label><label>Nome completo<input name="responsibleName" required></label><label>SIAPE, quando servidor<input name="siape"></label><label>E-mail institucional<input name="institutionalEmail" type="email" required></label><label>Telefone<input name="phone"></label><label>Responsável pela solicitação<input name="requestContact"></label><div class="full"><button class="primary">Salvar dados</button></div><p id="profile-message" class="message full"></p></form></div></section>
+  </div>
+  <section id="request-area" hidden>
+    <div class="page-head"><button class="secondary" id="back-dashboard">← Voltar</button><span class="eyebrow" id="request-type"></span><h1 id="request-title">Solicitação</h1><p id="request-status"></p></div>
+    <div id="locked-area" class="panel" hidden></div>
+    <div id="editable-area">
+      <div class="search"><input id="product-search" type="search" placeholder="Buscar por nome ou código…"><div class="autosave" id="autosave">Alterações salvas automaticamente.</div></div>
+      <div id="products" class="product-list"></div>
+      <div class="panel"><button class="primary wide" id="review-button">Revisar solicitação</button></div>
+    </div>
+  </section>
+</main>
+<nav class="mobile-nav"><button data-tab="inicio" class="active"><span>▦</span>Competências</button><button data-tab="historico"><span>◷</span>Histórico</button><button data-tab="perfil"><span>●</span>Meus dados</button></nav>
+<dialog id="review-dialog" class="modal"><div class="modal-body"><div class="modal-head"><div><span class="eyebrow">CONFERÊNCIA</span><h2>Revisar solicitação</h2></div><button class="close" id="close-review">×</button></div><div id="review-items" class="review-list"></div><label class="agreement"><input id="confirm-request" type="checkbox"><span>CONFIRMO QUE AS INFORMAÇÕES ESTÃO CORRETAS</span></label><div class="card-actions"><button class="secondary" id="edit-review">Voltar e corrigir</button><button class="primary" id="submit-request">Enviar solicitação</button></div><p id="review-message" class="message"></p></div></dialog>
+<script src="../demo-api.js"></script><script src="./app.js" defer></script></body></html>

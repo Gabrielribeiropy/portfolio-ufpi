@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#073d73"><title>Painel · Auditório Afonso Sena</title><link rel="stylesheet" href="./admin.css"></head>
+<body>
+  <header class="admin-header"><a href="../" class="admin-brand"><span>AS</span><div><b>Administração do Auditório</b><small>CCN · UFPI</small></div></a><button id="logout" class="ghost" hidden>Sair</button></header>
+  <main class="admin-shell">
+    <section id="login" class="panel login-card"><span class="eyebrow">ACESSO RESTRITO</span><h1>Painel administrativo</h1><p>Entre com a credencial administrativa deste projeto.</p><form id="login-form"><label>Usuário<input name="username" autocomplete="username" required></label><label>Senha<input name="password" type="password" autocomplete="current-password" required></label><button class="primary">Entrar</button><p class="message" id="login-message"></p></form></section>
+
+    <section id="app" hidden>
+      <div class="dashboard-head"><div><span class="eyebrow">GESTÃO INDEPENDENTE</span><h1>Auditório Afonso Sena</h1><p>Agenda, reservas e configurações.</p></div><a class="ghost link" href="../" target="_blank">Ver agenda pública ↗</a></div>
+      <nav class="admin-tabs"><button data-tab="agenda" class="active">Agenda</button><button data-tab="nova">Nova reserva</button><button data-tab="setores">Setores</button><button data-tab="auditorio">Auditório</button><button data-tab="historico">Histórico</button></nav>
+
+      <section id="tab-agenda" class="tab active">
+        <div class="stats" id="stats"></div>
+        <article class="panel"><div class="panel-head"><div><span class="eyebrow">CALENDÁRIO</span><h2>Reservas e solicitações</h2></div><label>Mês<input type="month" id="admin-month"></label></div><div class="admin-calendar" id="admin-calendar"></div></article>
+        <article class="panel"><div class="panel-head"><div><h2>Registros do período</h2><p>Dados pessoais visíveis somente para administradores.</p></div><select id="status-filter"><option value="">Todos os status</option><option value="requested">Solicitados</option><option value="confirmed">Confirmados</option><option value="reserved">Reservados</option><option value="blocked">Bloqueados</option><option value="cancelled">Cancelados</option></select></div><div id="reservations" class="reservations"></div></article>
+      </section>
+
+      <section id="tab-nova" class="tab">
+        <article class="panel"><span class="eyebrow">CADASTRO ADMINISTRATIVO</span><h2>Reserva manual ou bloqueio</h2><p>O histórico registrará “Reserva cadastrada pelo administrador”.</p>
+          <form id="manual-form" class="form-grid">
+            <label class="checkbox full"><input type="checkbox" name="block">Este registro é um bloqueio administrativo</label>
+            <label class="checkbox full"><input type="checkbox" name="wholeDay">Bloquear o dia inteiro</label>
+            <label>Nome completo *<input name="requesterName" required></label><label>Tipo de solicitante *<select name="requesterType" required><option>Servidor</option><option>Discente</option><option>Comunidade externa</option><option>Administração</option></select></label>
+            <label>Setor *<select name="sectorId" data-sector required></select></label><label>Telefone *<input name="phone" required></label><label>E-mail *<input type="email" name="email" required></label><label>E-mail institucional<input type="email" name="institutionalEmail"></label><label>SIAPE<input name="siape"></label>
+            <label>Data *<input type="date" name="eventDate" required></label><label>Início *<input type="time" name="startTime" required></label><label>Fim *<input type="time" name="endTime" required></label><label class="full">Nome/Tema do evento *<input name="eventName" required></label><label class="full">Justificativa *<textarea name="justification" rows="4" required></textarea></label><label>Status inicial<select name="status"><option value="confirmed">Confirmado</option><option value="reserved">Reservado</option><option value="requested">Solicitado</option></select></label>
+            <div class="full form-actions"><button class="primary">Cadastrar</button></div><p id="manual-message" class="message full"></p>
+          </form>
+        </article>
+      </section>
+
+      <section id="tab-setores" class="tab"><article class="panel"><div class="panel-head"><div><span class="eyebrow">SETORES E ÍCONES</span><h2>Gerenciar setores</h2><p>Nenhum setor fica fixo na interface pública.</p></div></div><form id="sector-form" class="inline-form"><label>Ícone<input name="icon" value="🏛️" maxlength="20"></label><label>Nome do setor<input name="name" required maxlength="100"></label><button class="primary">Adicionar</button></form><div id="sectors" class="sector-list"></div></article></section>
+
+      <section id="tab-auditorio" class="tab"><article class="panel"><span class="eyebrow">INFORMAÇÕES E REGRAS</span><h2>Configuração do auditório</h2><form id="settings-form" class="form-grid"><label>Nome<input name="auditorium_name" required></label><label>Capacidade<input name="capacity"></label><label class="full">Localização<input name="location"></label><label class="full">Equipamentos<textarea name="equipment" rows="4"></textarea></label><label class="full">Estrutura<textarea name="structure" rows="4"></textarea></label><label class="full">Acessibilidade<textarea name="accessibility" rows="4"></textarea></label><label class="full">Deveres<textarea name="duties" rows="4"></textarea></label><label class="full">Cuidados<textarea name="care" rows="4"></textarea></label><label class="full">Regras de utilização <small>Uma por linha</small><textarea name="rules" rows="7"></textarea></label><label class="full">Fotos <small>Uma URL HTTPS por linha</small><textarea name="photos" rows="5"></textarea></label><label class="full">E-mail da Direção<input name="direction_email" type="email" placeholder="direcao@ufpi.edu.br"></label><div class="full form-actions"><button class="primary">Salvar informações</button></div><p id="settings-message" class="message full"></p></form></article></section>
+
+      <section id="tab-historico" class="tab"><article class="panel"><span class="eyebrow">RASTREABILIDADE</span><h2>Histórico administrativo</h2><div class="history" id="history"></div></article><article class="panel"><span class="eyebrow">COMUNICAÇÕES</span><h2>Fila de e-mails</h2><p>Enquanto o SMTP não estiver configurado, as mensagens permanecem pendentes com segurança.</p><div class="history" id="outbox"></div></article></section>
+    </section>
+  </main>
+
+  <dialog id="edit-dialog"><form method="dialog" id="edit-form"><div class="dialog-head"><h2>Editar reserva</h2><button value="cancel" class="close">×</button></div><input type="hidden" name="id"><div class="form-grid"><label class="full">Evento<input name="eventName" required></label><label>Data<input type="date" name="eventDate" required></label><label>Início<input type="time" name="startTime" required></label><label>Fim<input type="time" name="endTime" required></label><label>Setor<select name="sectorId" data-sector></select></label><label>Status<select name="status"><option value="requested">Solicitado</option><option value="confirmed">Confirmado</option><option value="reserved">Reservado</option><option value="blocked">Bloqueado</option><option value="cancelled">Cancelado</option></select></label><label class="full">Observação administrativa<textarea name="adminNote" rows="4"></textarea></label></div><div class="form-actions"><button value="cancel" class="ghost">Fechar</button><button type="submit" value="default" class="primary">Salvar alteração</button></div><p class="message" id="edit-message"></p></form></dialog>
+  <script src="../demo-api.js"></script>
+  <script src="./admin.js" defer></script>
+</body></html>

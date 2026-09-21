@@ -1,0 +1,11 @@
+const signature = document.createElement('a');
+signature.className = 'gr-project-signature';
+signature.href = 'https://github.com/Gabrielribeiropy/portfolio-ufpi';
+signature.target = '_blank';
+signature.rel = 'noreferrer';
+signature.setAttribute('aria-label', 'Projeto demonstrativo por Gabriel Ribeiro — abrir GitHub');
+signature.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3a3 3 0 1 0 2 5.83V10a4 4 0 0 0 4 4h2v1.17A3 3 0 1 0 16 15v-4a3 3 0 1 0-2 0v1h-2a2 2 0 0 1-2-2V8.83A3 3 0 0 0 6 3Zm0 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm10 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0 10a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="currentColor"/></svg><span><b>Gabriel Ribeiro</b><small>Projeto demonstrativo · GitHub</small></span>`;
+const style = document.createElement('style');
+style.textContent = `.gr-project-signature{position:fixed;z-index:999;right:14px;bottom:14px;display:flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid rgba(7,61,115,.24);border-radius:99px;background:rgba(255,255,255,.94);box-shadow:0 8px 28px rgba(7,38,67,.16);color:#073d73;text-decoration:none;backdrop-filter:blur(10px)}.gr-project-signature svg{width:21px;height:21px}.gr-project-signature b,.gr-project-signature small{display:block}.gr-project-signature b{font:800 10px/1.1 Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}.gr-project-signature small{margin-top:2px;font:600 8px/1.1 Arial,sans-serif;color:#60758a}@media(max-width:520px){.gr-project-signature{right:9px;bottom:9px}.gr-project-signature small{display:none}}`;
+document.head.append(style);
+document.body.append(signature);

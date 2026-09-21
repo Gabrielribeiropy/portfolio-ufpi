@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#063d73">
+  <title>CCN Web — Demonstração interativa</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#inicio"><span>CCN</span><strong>Centro de Ciências<br>da Natureza<small>Universidade Federal do Piauí</small></strong></a>
+    <nav><a href="#inicio">Início</a><a href="#noticias">Notícias</a><a href="#servicos">Serviços</a><a href="#sobre">O CCN</a></nav>
+    <button id="search-open" class="icon" aria-label="Abrir busca">⌕</button>
+    <button id="menu-open" class="menu">Menu</button>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-grid"></div><div class="hero-orbit">CCN<i></i><i></i></div>
+      <div class="hero-copy"><span>CCN · UFPI</span><h1>Ciência,<br>conhecimento<br>e transformação.</h1><p>Informações acadêmicas, notícias e serviços do Centro de Ciências da Natureza.</p><a href="#noticias" class="primary">Ver notícias →</a></div>
+    </section>
+
+    <section id="servicos" class="section"><div class="heading"><span>ACESSO DIRETO</span><h2>Encontre o que precisa</h2></div><div class="quick-grid">
+      <button data-category="Graduação"><i>01</i><b>Graduação</b><span>→</span></button><button data-category="Departamentos"><i>02</i><b>Departamentos</b><span>→</span></button><button data-category="Documentos"><i>03</i><b>Documentos</b><span>→</span></button><button data-category="Espaços"><i>04</i><b>Espaços</b><span>→</span></button><button data-category="Mapa"><i>05</i><b>Mapa do CCN</b><span>→</span></button><button data-category="Calendário"><i>06</i><b>Calendário</b><span>→</span></button>
+    </div><p id="category-result" class="result" hidden></p></section>
+
+    <section id="noticias" class="news-section"><div class="section"><div class="heading light"><span>ATUALIZAÇÕES</span><h2>Últimas notícias</h2></div><div class="filters"><button class="active" data-filter="Todas">Todas</button><button data-filter="Institucional">Institucional</button><button data-filter="Comunicado">Comunicados</button><button data-filter="Resultado">Resultados</button></div><div id="news-grid" class="news-grid"></div></div></section>
+
+    <section id="sobre" class="about section"><span>PROJETO DEMONSTRATIVO</span><h2>Um portal pensado para organizar a vida digital do Centro.</h2><p>Esta experiência demonstra arquitetura de informação, busca, notícias e serviços. O conteúdo institucional final deve ser validado pela UFPI.</p></section>
+  </main>
+
+  <footer><div><b>CCN · UFPI</b><span>Teresina — Piauí</span></div><a href="https://github.com/Gabrielribeiropy/portfolio-ufpi" target="_blank" rel="noreferrer">Gabriel Ribeiro · GitHub ↗</a></footer>
+
+  <dialog id="search-dialog"><form method="dialog"><button class="close" aria-label="Fechar">×</button><span>BUSCA NO PORTAL</span><h2>O que você procura?</h2><input id="search-input" type="search" placeholder="Digite notícia, serviço ou assunto…" autofocus><div id="search-results"></div></form></dialog>
+  <aside id="mobile-menu" aria-hidden="true"><button id="menu-close">×</button><span>NAVEGAÇÃO</span><a href="#inicio">Início</a><a href="#noticias">Notícias</a><a href="#servicos">Serviços</a><a href="#sobre">O CCN</a></aside>
+  <a class="signature" href="https://github.com/Gabrielribeiropy/portfolio-ufpi" target="_blank" rel="noreferrer"><b>GR</b><span><strong>Gabriel Ribeiro</strong><small>Projeto demonstrativo · GitHub</small></span></a>
+  <script src="./app.js"></script>
+</body>
+</html>

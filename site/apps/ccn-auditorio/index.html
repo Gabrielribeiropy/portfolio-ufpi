@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#073d73">
+  <title>Auditório Afonso Sena · CCN/UFPI</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>.calendar-head h2{text-transform:none}.legend .available{background:#fff;border:1px solid #91a8bb}</style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#agenda" data-view-link="agenda"><span class="brand-mark">AS</span><span><b>Auditório Afonso Sena</b><small>CCN · Universidade Federal do Piauí</small></span></a>
+    <nav class="desktop-nav" aria-label="Navegação principal"><button data-view="agenda">Agenda</button><button data-view="solicitar">Solicitar reserva</button><button data-view="auditorio">O auditório</button></nav>
+  </header>
+
+  <main>
+    <section id="view-agenda" class="view active">
+      <div class="hero"><span class="eyebrow">AGENDA PÚBLICA</span><h1>Consulte a disponibilidade</h1><p>Veja os horários do Auditório Afonso Sena. Dados pessoais dos responsáveis nunca são exibidos.</p><button class="primary" data-view="solicitar">Solicitar reserva</button></div>
+      <div class="content-card calendar-card">
+        <div class="calendar-head"><button class="icon-button" id="prev-month" aria-label="Mês anterior">‹</button><div><h2 id="month-title">Carregando…</h2><button class="today-link" id="today">Ir para hoje</button></div><button class="icon-button" id="next-month" aria-label="Próximo mês">›</button></div>
+        <div class="weekdays" aria-hidden="true"><span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span></div>
+        <div id="calendar" class="calendar-grid" aria-label="Calendário"></div>
+        <div class="legend"><span><i class="available"></i>Disponível</span><span><i class="requested"></i>Solicitado</span><span><i class="confirmed"></i>Confirmado</span><span><i class="reserved"></i>Reservado</span><span><i class="blocked"></i>Bloqueado</span></div>
+      </div>
+      <div class="content-card"><div class="section-heading"><div><span class="eyebrow">PROGRAMAÇÃO</span><h2 id="selected-title">Eventos do mês</h2></div><button class="secondary small" id="show-month">Ver mês todo</button></div><div id="event-list" class="event-list"><div class="loading">Carregando agenda…</div></div></div>
+    </section>
+
+    <section id="view-solicitar" class="view">
+      <div class="page-head"><span class="eyebrow">SOLICITAÇÃO DE RESERVA</span><h1>Conte-nos sobre o evento</h1><p>A solicitação será analisada pela administração e não representa confirmação automática.</p></div>
+      <form id="reservation-form" class="content-card form-card">
+        <div class="form-progress"><span class="active">1. Dados</span><span>2. Conferência</span></div>
+        <div id="form-fields">
+          <div class="form-section"><h2>Responsável</h2><div class="form-grid">
+            <label class="full">Nome completo *<input name="requesterName" required maxlength="160" autocomplete="name"></label>
+            <label>Tipo de solicitante *<select name="requesterType" required><option value="">Selecione</option><option>Servidor</option><option>Discente</option><option>Terceirizado</option><option>Comunidade externa</option><option>Outro</option></select></label>
+            <label>Setor *<select name="sectorId" id="sector-select" required><option value="">Carregando…</option></select></label>
+            <label>Telefone *<input name="phone" type="tel" required maxlength="40" autocomplete="tel"></label>
+            <label>E-mail *<input name="email" type="email" required maxlength="180" autocomplete="email"></label>
+            <label>E-mail institucional <small>Recomendado</small><input name="institutionalEmail" type="email" maxlength="180"></label>
+            <label id="siape-field">SIAPE <span id="siape-required"></span><input name="siape" maxlength="30"></label>
+          </div></div>
+          <div class="form-section"><h2>Evento</h2><div class="form-grid">
+            <label>Data *<input name="eventDate" id="event-date" type="date" required></label>
+            <label>Horário inicial *<input name="startTime" type="time" required></label>
+            <label>Horário final *<input name="endTime" type="time" required></label>
+            <label class="full">Nome/Tema do evento *<input name="eventName" required maxlength="180"></label>
+            <label class="full">Justificativa *<textarea name="justification" required maxlength="3000" rows="5"></textarea></label>
+          </div></div>
+          <label class="agreement"><input name="rulesAccepted" type="checkbox" required><span>Li e concordo com as <button type="button" class="text-button" data-view="auditorio">regras de utilização</button>.</span></label>
+          <button class="primary wide" type="button" id="review-request">Revisar solicitação</button>
+        </div>
+        <div id="review" hidden><div id="review-content" class="review-content"></div><div class="button-row"><button class="secondary" type="button" id="edit-request">Voltar e editar</button><button class="primary" type="submit">Enviar solicitação</button></div></div>
+        <div id="form-result" class="result" hidden></div>
+      </form>
+    </section>
+
+    <section id="view-auditorio" class="view">
+      <div class="page-head"><span class="eyebrow">INFORMAÇÕES DO AUDITÓRIO</span><h1 id="auditorium-name">Auditório Afonso Sena</h1><p id="auditorium-location">Centro de Ciências da Natureza — UFPI</p></div>
+      <div id="photos" class="photo-strip"></div>
+      <div class="info-grid">
+        <article class="content-card info-card"><span class="info-icon">♙</span><h2>Capacidade</h2><p id="info-capacity"></p></article>
+        <article class="content-card info-card"><span class="info-icon">⌁</span><h2>Equipamentos</h2><p id="info-equipment"></p></article>
+        <article class="content-card info-card"><span class="info-icon">⌂</span><h2>Estrutura</h2><p id="info-structure"></p></article>
+        <article class="content-card info-card"><span class="info-icon">♿</span><h2>Acessibilidade</h2><p id="info-accessibility"></p></article>
+      </div>
+      <div class="content-card rules-card"><h2>Deveres e cuidados</h2><h3>Responsabilidades</h3><p id="info-duties"></p><h3>Cuidados com o espaço</h3><p id="info-care"></p><h3>Regras de utilização</h3><div id="info-rules"></div><button class="primary" data-view="solicitar">Li as regras · Solicitar reserva</button></div>
+    </section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="Navegação"><button data-view="agenda"><span>▦</span>Agenda</button><button data-view="solicitar"><span>＋</span>Solicitar</button><button data-view="auditorio"><span>ⓘ</span>Auditório</button></nav>
+  <script src="./demo-api.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
