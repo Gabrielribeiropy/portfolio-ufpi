@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">Auditório Afonso Sena</title>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#152638"/><stop offset="1" stop-color="#9b6226"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <text x="600" y="390" fill="#fff" font-family="Arial, sans-serif" font-size="92" font-weight="700" text-anchor="middle">Auditório</text>
+  <text x="600" y="500" fill="#fff" font-family="Arial, sans-serif" font-size="92" font-weight="700" text-anchor="middle">Afonso Sena</text>
+</svg>

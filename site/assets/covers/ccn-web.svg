@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">CCN Web</title>
+  <defs><linearGradient id="bg" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#052c51"/><stop offset="1" stop-color="#2d80c6"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <text x="600" y="420" fill="#fff" font-family="Arial, sans-serif" font-size="112" font-weight="700" text-anchor="middle">CCN Web</text>
+</svg>
