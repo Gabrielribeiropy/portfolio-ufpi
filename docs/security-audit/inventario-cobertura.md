@@ -2,6 +2,8 @@
 
 Estado inicial: branch `main`, HEAD `eaf599c37473e58d95ce03879b0f9d44b361652e`. Havia 37 caminhos locais modificados ou novos na preparação da publicação, incluindo a mudança preexistente de marca em `site/index.html`; preservados.
 
+Rechecagem após a primeira publicação: a página de detalhes do CCN Mobile teve apenas texto e capturas antigas removidas; os três arquivos PNG sem referências também foram excluídos. As outras duas páginas de detalhes receberam a assinatura Averotech no lugar de “Creative Developer”. Busca por referências aos PNGs e `Creative Developer` retornou zero, e `git diff --check` passou. Sem mudança no bundle, API, armazenamento ou workflow.
+
 | Área | Cobertura |
 | --- | --- |
 | Publicação | `.github/workflows/pages.yml` publica apenas `site/` no GitHub Pages, a partir de `main`. |

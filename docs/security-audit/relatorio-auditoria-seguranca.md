@@ -17,6 +17,8 @@ Data: 16/11/2026. Branch `main`; HEAD antes da publicação `eaf599c37473e58d95c
 
 **COM RESSALVAS para a vitrine estática.** Crítica 0; alta 0; média 0; baixa 0; informativa 1. Não há achado crítico ou alto confirmado no artefato a publicar. A ressalva é a dependência de uma API pública externa para o CCN Mobile e a falta de teste de segurança dinâmico da infraestrutura de produção. A auditoria anterior do aplicativo móvel registrou pendência de MFA de produção separada; esta publicação não implanta nem altera a API/painel.
 
+Rechecagem do ajuste visual final: removidas três capturas antigas e seus arquivos sem referências; texto da página CCN Mobile atualizado; assinatura das páginas de detalhes alinhada à Averotech. Nenhum código executável, endpoint ou política de publicação mudou. Contagens e veredito mantidos.
+
 ## Achados confirmados
 
 | Severidade | Arquivo:linha | Categoria | Descrição |
