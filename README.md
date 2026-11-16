@@ -1,6 +1,6 @@
 # UFPI Digital — Projetos demonstrativos
 
-Quatro experiências digitais criadas por **Gabriel Ribeiro · Zenvory** para explorar formas de organizar informações e serviços acadêmicos. Este é um portfólio demonstrativo independente, sem vínculo de produto oficial com a UFPI.
+Três experiências digitais criadas por **Gabriel Ribeiro · Averotech** para explorar formas de organizar informações e serviços acadêmicos. Este é um portfólio demonstrativo independente, sem vínculo de produto oficial com a UFPI.
 
 **[Abrir o portfólio online](https://gabrielribeiropy.github.io/portfolio-ufpi/)** · **[Conhecer Gabriel Ribeiro](https://github.com/Gabrielribeiropy)**
 
@@ -11,7 +11,6 @@ Quatro experiências digitais criadas por **Gabriel Ribeiro · Zenvory** para ex
 | CCN Mobile | Notícias, informações e serviços em uma interface para celular. | [Abrir](https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-mobile/) |
 | Solicitação de Materiais | Pedido, acompanhamento e gestão por setor. | [Abrir](https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-materiais/) |
 | Auditório Afonso Sena | Disponibilidade e solicitação de reservas. | [Abrir](https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-auditorio/) |
-| CCN Web | Conteúdo e serviços em um portal responsivo. | [Abrir](https://gabrielribeiropy.github.io/portfolio-ufpi/apps/ccn-web/) |
 
 Cada demonstração possui uma [página de apresentação](https://gabrielribeiropy.github.io/portfolio-ufpi/#projetos) com contexto e acesso à interface. O site usa HTML, CSS e JavaScript e é publicado pelo GitHub Actions no GitHub Pages.
 
@@ -20,9 +19,8 @@ Cada demonstração possui uma [página de apresentação](https://gabrielribeir
 - `/projetos/ccn-mobile/`
 - `/projetos/ccn-materiais/`
 - `/projetos/ccn-auditorio/`
-- `/projetos/ccn-web/`
 
-Em Materiais, use `setor` para a experiência do solicitante ou `master` para o painel de gestão; qualquer senha funciona no modo demonstrativo. Auditório, Materiais e Portal salvam alterações somente no navegador do visitante.
+Em Materiais, use `setor` para a experiência do solicitante ou `master` para o painel de gestão; qualquer senha funciona no modo demonstrativo. Auditório e Materiais salvam alterações somente no navegador do visitante. O CCN Mobile é uma exportação web do aplicativo móvel, com leitura da API pública do projeto.
 
 O site é publicado automaticamente pelo workflow `.github/workflows/pages.yml` a cada push na branch `main`.
 
